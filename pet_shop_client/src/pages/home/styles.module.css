@@ -1,0 +1,17 @@
+.imageContainer {
+  background-image: url(../../assets/images/home.png);
+  width: 100%;
+  min-height: 42vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6vw 3vw;
+}
+.titleHome{
+  color: rgba(255, 255, 255, 1);
+
+}

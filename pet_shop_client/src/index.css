@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 4px;
+    h1{
+        font-size: 24rem;
+        font-family: "Montserrat", sans-serif;
+    }
+    h2 {
+        font-size: 16rem;
+        font-family: "Montserrat", sans-serif;
+    }
+    h3 {
+        font-size: 5rem;
+        font-family: "Montserrat", sans-serif;
+    }
+    p {
+        font-size: 4rem;
+        font-family: "Montserrat", sans-serif;
+    }
+}

@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgba(255, 255, 255, 1);
+    padding: 2vw 3vw;
+}
+.nav{
+    display: flex;
+    gap: 2vw;
+}
+.logo{
+    height: 70px;
+    width: 70px;
+}
+.navLink{
+    font-size: 5rem;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
