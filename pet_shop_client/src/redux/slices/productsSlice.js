@@ -50,7 +50,8 @@ const productsSlice = createSlice({
     status:"idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
     .addCase(fetchProducts.pending, setLoading)

@@ -1,0 +1,36 @@
+.imgcart {
+  width: 100%;
+  height: 284px;
+  object-fit: cover;
+}
+.seleBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 67px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  background: rgba(13, 80, 255, 1);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 5rem;
+  z-index: 2;
+}
+.textCart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 1vw;
+}
+.actualPrice {
+  color: black;
+  font-weight: 600;
+}
+.aldPrice {
+  text-decoration: line-through;
+  font-weight: 500;
+}

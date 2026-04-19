@@ -1,0 +1,22 @@
+.errorContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 26vw;
+    margin-top: 3vw;
+    gap: 2vw;
+}
+.img{
+    max-width: 48vw;
+}
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.greyText{
+    color: rgba(139, 139, 139, 1);
+    font-weight: 500;
+}

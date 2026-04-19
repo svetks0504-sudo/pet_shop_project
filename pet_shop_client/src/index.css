@@ -6,22 +6,23 @@
 html {
   font-size: 4px;
   h1 {
-    font-size: 24rem;
+    font-size: 24rem; /*96px*/
     font-family: "Montserrat", sans-serif;
   }
   h2 {
-    font-size: 16rem;
+    font-size: 16rem;/*64px*/
     font-family: "Montserrat", sans-serif;
   }
   h3 {
-    font-size: 10rem;
+    font-size: 10rem;/*40px*/
     font-family: "Montserrat", sans-serif;
   }
   h4 {
-    font-size: 5rem;
+    font-size: 5rem;/*20px*/
+    font-family: "Montserrat", sans-serif;
   }
   p {
-    font-size: 4rem;
+    font-size: 4rem;/*16px*/
     font-family: "Montserrat", sans-serif;
   }
 }

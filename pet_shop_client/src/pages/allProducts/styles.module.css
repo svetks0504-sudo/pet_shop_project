@@ -1,0 +1,10 @@
+.productsContainer {
+  padding: 0 3vw;
+}
+.cartsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  justify-content: center;
+  align-items: center;
+}
