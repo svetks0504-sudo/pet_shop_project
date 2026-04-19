@@ -11,7 +11,38 @@
   align-items: center;
   padding: 6vw 3vw;
 }
-.titleHome{
+.titleHome {
   color: rgba(255, 255, 255, 1);
-
+}
+.categoriesContainer{
+  padding: 6vw 3vw;
+}
+.carousel {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+.arrowLeft {
+  left: 5px;
+}
+.arrowRight {
+  right: 5px;
+}
+.sliderWrapper {
+  position: relative;
 }

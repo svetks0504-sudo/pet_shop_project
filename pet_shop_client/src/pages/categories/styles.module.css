@@ -1,0 +1,13 @@
+.categoriesContainer {
+  padding: 0 3vw;
+}
+.categoriesTitle {
+  margin-bottom: 2vw;
+}
+.cartsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  justify-content: center;
+  align-items: center;
+}
