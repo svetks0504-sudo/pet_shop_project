@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
 import { NavLink } from "react-router-dom";
 import { ShoppingOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-
+import { Button, Badge } from "antd";
+import { Link } from "react-router-dom";
 
 const navMenu = [
   { title: "Main Page", path: "/", id: "home" },
@@ -14,9 +14,11 @@ const navMenu = [
 function Header() {
   return (
     <header className={styles.header}>
-      <img className={styles.logo}
-      src="src/assets/icons/logo.svg" 
-      alt="Logo" />
+     <Link to="/">
+     <img
+      className={styles.logo} 
+      src="src/assets/icons/logo.svg" alt="Logo" />
+      </Link>
 
       <nav className={styles.nav}>
         {navMenu.map((item) => {
@@ -35,9 +37,19 @@ function Header() {
         ;
       </nav>
 
-      <Button 
-      ><ShoppingOutlined />
-      </Button>
+      <Link to="shoppingCart">
+      <Badge count={1}
+      color="rgba(13, 80, 255, 1)"
+      offset={[-45, 15]}>
+        <ShoppingOutlined
+          style={{
+            fontSize: "50px",
+            margin: "0px",
+            padding: "0px"
+          }}
+        />
+      </Badge>
+      </Link>
     </header>
   );
 }

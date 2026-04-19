@@ -19,3 +19,10 @@
     color: black;
     font-weight: 500;
 }
+.navLink:hover{
+   color: rgb(75, 120, 235);
+} 
+
+.navLink:active{
+    color: rgba(13, 80, 255, 1);
+}
