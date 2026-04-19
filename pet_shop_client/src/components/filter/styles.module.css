@@ -1,0 +1,42 @@
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 2vw;
+  font-family: "Montserrat", sans-serif;
+  width: 63vw;
+}
+
+/*--Checkbox--*/
+:global(.ant-checkbox-wrapper) {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1vw;
+}
+:global(.ant-checkbox-wrapper span:last-child) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/*--Select--*/
+.arrow {
+  transition: transform 0.25s ease;
+}
+:global(.ant-select-open) .arrow {
+  transform: rotate(180deg);
+}
+:global(.ant-select-item-option-selected) {
+  background: transparent !important;
+}
+:global(.ant-select-item-option-content) {
+  font-size: 4rem;
+}
+.labelFiltr {
+  font-size: 5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}

@@ -1,6 +1,9 @@
 .productsContainer {
   padding: 0 3vw;
 }
+.titleProducts{
+  margin-bottom: 2vw;
+}
 .cartsContainer {
   display: flex;
   flex-wrap: wrap;

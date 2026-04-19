@@ -1,12 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../redux/slices/productsSlice";
-import { Breadcrumb } from "antd";
 import styles from "./styles.module.css";
-import { HomeOutlined } from "@ant-design/icons";
 import CardProduct from "../../components/cardProduct";
+import BreadCrumb from "../../components/breadCrumb";
+import { HomeOutlined } from "@ant-design/icons";
+import Filter from "../../components/filter";
 
-
+const crumbArray = [
+  {
+    title: <HomeOutlined />,
+    href: "/"
+  },
+  {
+    title: "All products",
+    href: "/allProducts"
+  }
+]
 
 
 function AllProducts() {
@@ -21,29 +31,9 @@ function AllProducts() {
 
   return (
     <div className={styles.productsContainer}>
-      <Breadcrumb
-        separator="⭢"
-        style={{
-          fontSize: "16px",
-          fontWeight: "500",
-          fontFamily: "Montserrat, sans-serif",
-        }}
-        items={[
-          {
-            title: (
-              <a href="/" className={styles.crumb}>
-                <HomeOutlined />
-              </a>
-            ),
-          },
-          {
-            title: <a href="allProducts" className={styles.crumb}>
-              All products
-              </a>,
-          },
-        ]}
-      />
-      <h2>All products</h2>
+     <BreadCrumb array={crumbArray}/>
+      <h2 className={styles.titleProducts}>All products</h2>
+      <Filter />
       <div className={styles.cartsContainer}>
         {products?.map((prod) => {
           return (
