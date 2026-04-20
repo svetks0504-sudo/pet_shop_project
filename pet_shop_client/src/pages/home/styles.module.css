@@ -14,7 +14,7 @@
 .titleHome {
   color: rgba(255, 255, 255, 1);
 }
-.categoriesContainer{
+.categoriesContainer {
   padding: 6vw 3vw;
 }
 .carousel {
@@ -45,4 +45,50 @@
 }
 .sliderWrapper {
   position: relative;
+}
+
+.formContainer {
+  width: 100%;
+  background-color: rgba(13, 80, 255, 1);
+}
+.formContainerTitel {
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 2vw;
+}
+.formContainerFlex {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  width: 36vw;
+  gap: 1vw;
+  background-color: rgba(13, 80, 255, 1);
+}
+.input {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(13, 80, 255, 1);
+  border: 1px solid white;
+  height: 58px;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 1);
+  font-size: 5rem;
+}
+.button {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(40, 40, 40, 1);
+  font-weight: 600;
+  font-size: 5rem;
+  height: 58px;
+}
+.formImg {
+  width: 100%;
+  max-width: 54vw;
+  height: auto;
+  object-fit: contain;
+  align-self: flex-end;
 }

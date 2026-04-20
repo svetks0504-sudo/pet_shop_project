@@ -1,15 +1,23 @@
-import { Button, Carousel } from "antd";
+import { Button, Carousel, Input } from "antd";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../redux/slices/categoriesSlice";
 import CardCategories from "../../components/cardCategories";
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import DividerHome from "../../components/dividerHome";
+import { useForm } from "react-hook-form";
 
 function Home() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const sliderRef = useRef(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -27,6 +35,11 @@ function Home() {
       behavior: "smooth",
     });
   };
+
+  const onSubmit = async (data) => {
+    await dispatch((data));
+    reset();
+  }
 
   return (
     <div>
@@ -51,7 +64,7 @@ function Home() {
 
       {/* ----- 2 part categories ------ */}
       <div className={styles.categoriesContainer}>
-        {/*  categories  */}
+        <DividerHome title={"Categories"} all={"All categories "} />
 
         <div className={styles.sliderWrapper}>
           <button className={styles.arrowLeft} onClick={scrollLeft}>
@@ -73,6 +86,36 @@ function Home() {
       </div>
 
       {/* ----- 3 part 5% form ------ */}
+      <div className={styles.formContainer}>
+
+        <h2 className={styles.formContainerTitel}>5% off on the first order</h2>
+        <div className={styles.formContainerFlex}>
+        <img className={styles.formImg}
+        src="src/assets/images/dogs.png" 
+        alt="icons"/>
+        <form className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}>
+          <Input className={styles.input}
+          placeholder="Name" 
+          {...register("name",{required: true})}/>
+          {errors.name && <span>Name field is required</span>}
+          
+          <Input className={styles.input}
+          placeholder="Phone number"
+          {...register("phone",{required: true})} />
+          {errors.phone && <span>Phone number field is required</span>}
+          
+          <Input className={styles.input}
+          placeholder="Email"
+          {...register("email",{required: true})} />
+          {errors.email && <span>Email field is required</span>}
+          <Button className={styles.button}
+          type="primary">
+            Get a discount
+            </Button>
+        </form>
+        </div>
+      </div>
       {/* ----- 4 part SALE products ------ */}
     </div>
   );
