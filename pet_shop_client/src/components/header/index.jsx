@@ -8,7 +8,7 @@ const navMenu = [
   { title: "Main Page", path: "/", id: "home" },
   { title: "Categories", path: "/categories", id: "categories" },
   { title: "All products", path: "/allProducts", id: "allProducts" },
-  { title: "All sales", path: "/allSales", id: "allSales" },
+  { title: "All sales", path: "/allProducts?type=discount", id: "sales" },
 ];
 
 function Header() {

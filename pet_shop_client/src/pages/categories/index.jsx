@@ -30,10 +30,11 @@ function Categories() {
             <h2 className={styles.categoriesTitle}>Categories</h2>
 
             <div className={styles.cartsContainer}>
-                {categories.map((categor)=>{
+                {categories?.map((categor)=>{
                     return (
                         <CardCategories key={categor.id}
-                        categ={categor}/>
+                        elem={categor}
+                        path="/allProducts?category="/>
                     )
                 })}
             </div>

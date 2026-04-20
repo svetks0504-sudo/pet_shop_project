@@ -14,42 +14,20 @@
 .titleHome {
   color: rgba(255, 255, 255, 1);
 }
+.leftBtn {
+  align-self: flex-start;
+  padding: 3vw;
+}
 .categoriesContainer {
   padding: 6vw 3vw;
 }
-.carousel {
-  display: flex;
-  gap: 32px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-}
-.arrowLeft,
-.arrowRight {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 25px;
-}
-.arrowLeft {
-  left: 5px;
-}
-.arrowRight {
-  right: 5px;
-}
-.sliderWrapper {
-  position: relative;
-}
 
 .formContainer {
-  width: 100%;
+  width: 94%;
   background-color: rgba(13, 80, 255, 1);
+  margin: 0 3% 6vw 3%;
+  align-self: center;
+  border-radius: 12px;
 }
 .formContainerTitel {
   color: rgba(255, 255, 255, 1);
@@ -67,6 +45,7 @@
   width: 36vw;
   gap: 1vw;
   background-color: rgba(13, 80, 255, 1);
+  border-radius: 12px;
 }
 .input {
   color: rgba(255, 255, 255, 1);
@@ -78,12 +57,8 @@
   color: rgba(255, 255, 255, 1);
   font-size: 5rem;
 }
-.button {
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(40, 40, 40, 1);
-  font-weight: 600;
-  font-size: 5rem;
-  height: 58px;
+.input:hover{
+ color: black !important; 
 }
 .formImg {
   width: 100%;
@@ -91,4 +66,7 @@
   height: auto;
   object-fit: contain;
   align-self: flex-end;
+}
+.saleContainerHome{
+  padding: 0 3vw;
 }

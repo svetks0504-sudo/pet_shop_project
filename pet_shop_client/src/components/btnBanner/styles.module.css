@@ -1,0 +1,19 @@
+.button {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(40, 40, 40, 1) ;
+  font-weight: 600 ;
+  font-size: 5rem ;
+  height: 58px ;
+}
+.button:hover{
+  background-color: rgba(40, 40, 40, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+.button:active{
+  background-color:rgba(255, 255, 255, 1) !important;
+  color: rgba(13, 80, 255, 1) !important;
+}
+.button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
