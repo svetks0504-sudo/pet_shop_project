@@ -8,8 +8,7 @@ import { HomeOutlined } from "@ant-design/icons";
 import Filter from "../../components/filter";
 import { useSearchParams } from "react-router-dom";
 
-
-const crumbArray = [
+const crumbArrayProducts = [
   {
     title: <HomeOutlined />,
     href: "/",
@@ -19,12 +18,22 @@ const crumbArray = [
     href: "/allProducts",
   },
 ];
+const crumbArrayDiscont = [
+  {
+    title: <HomeOutlined />,
+    href: "/",
+  },
+  {
+    title: "All sales",
+    href: "/allProducts?type=discount",
+  },
+];
 
 function AllProducts() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
+  const { categories } = useSelector((state) => state.categories);
   const [params] = useSearchParams();
-
   const type = params.get("type");
   const category = params.get("category");
 
@@ -39,28 +48,42 @@ function AllProducts() {
     ? products.filter((item) => item.categoryId === Number(category))
     : [];
 
-  let dataToShow = products;
   let title = "All products";
+  let isCheckbox = true;
+  let dataToShow = products;
+  let breadArray = crumbArrayProducts;
 
   if (type === "discount") {
-    dataToShow = discountProducts;
     title = "Discounted items";
+    isCheckbox = false;
+    dataToShow = discountProducts;
+    breadArray = crumbArrayDiscont;
   }
   if (category) {
+    const categoryName = categories.find(
+      (cat) => cat.id === Number(category),
+    )?.title;
+
+    const crumbArrayCategory = [
+      { title: <HomeOutlined />, href: "/" },
+      { title: "Categories", href: "/categories" },
+      { title: categoryName, href: `/allProducts?category=${category}` },
+    ];
+
+    title = categoryName;
+    isCheckbox = true;
     dataToShow = categoryProducts;
-    title = "Dry & Wet Food";
+    breadArray = crumbArrayCategory;
   }
 
   return (
     <div className={styles.productsContainer}>
-      <BreadCrumb array={crumbArray} />
+      <BreadCrumb array={breadArray} />
       <h2 className={styles.titleProducts}>{title}</h2>
-      <Filter />
+      <Filter isCheckbox={isCheckbox} />
       <div className={styles.cartsContainer}>
         {dataToShow?.map((prod) => {
-          return <CardProduct key={prod.id} 
-          elem={prod}
-          path="/product/" />;
+          return <CardProduct key={prod.id} elem={prod} path="/product/" />;
         })}
       </div>
     </div>

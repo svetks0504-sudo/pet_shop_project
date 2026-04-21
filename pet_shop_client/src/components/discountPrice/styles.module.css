@@ -1,0 +1,15 @@
+.seleBadge {
+  position: absolute;
+  width: 67px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  background: rgba(13, 80, 255, 1);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 5rem;
+  z-index: 2;
+}

@@ -1,0 +1,59 @@
+.productContainer {
+  padding: 0 3vw;
+}
+.productFlexRel,
+.productText,
+.productFlex,
+.product {
+  display: flex;
+  gap: 2.3vw;
+}
+.productText {
+  flex-direction: column;
+  width: 46%;
+  justify-content: space-between;
+}
+.product {
+  justify-content: space-between;
+  align-items: center;  
+}
+.productImg {
+  width: 54%;
+  object-fit: cover;
+  max-height: 40vw;
+}
+
+.aldprice {
+  color: rgba(139, 139, 139, 1);
+  text-decoration: line-through;
+  font-weight: 500;
+  text-align: end;
+}
+.productFlexRel {
+  position: relative;
+  width: 299px;
+  align-items: baseline;
+}
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1.2vw;
+}
+.texts {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1.5vw;
+}
+
+.open {
+  -webkit-line-clamp: unset;
+}
+.btn{
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+}

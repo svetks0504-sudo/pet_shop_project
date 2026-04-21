@@ -11,7 +11,7 @@ export const fetchCategories = createAsyncThunk(
         const response = await axios.get(`${BASE_URL}/categories/all`);
         return response.data;    
         }catch (error){
-            const message = error || error.message;
+            const message = error.message || error;
             return rejectWithValue({message});
         }
     }
@@ -24,7 +24,7 @@ export const fetchCategorie = createAsyncThunk(
             const response = await axios.get(`${BASE_URL}/categories/${id}`);
             return response.data;
         }catch(error){
-            const message = error || error.message;
+            const message = error.message || error;
             return rejectWithValue({message});
         }
     }
@@ -44,8 +44,8 @@ const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
         categories: [],
-        categorie: null,
-        staus: "idle",
+        category: null,
+        status: "idle",
         error: null,
     },
     reducers: {},
@@ -53,22 +53,22 @@ const categoriesSlice = createSlice({
         builder
         .addCase(fetchCategories.pending, setLoading)
         .addCase(fetchCategories.fulfilled, (state, action)=>{
-            state.staus = "succeeded";
+            state.status = "succeeded";
             state.categories = action.payload
         })
         .addCase(fetchCategories.rejected, setError)
 
         .addCase(fetchCategorie.pending, setLoading )
         .addCase(fetchCategorie.fulfilled, (state, action)=>{
-            state.staus = "succeeded";
-            state.categorie = action.payload;
+            state.status = "succeeded";
+            state.category = action.payload;
         })
         .addCase(fetchCategorie.rejected, setError)
 
     }
 })
 
-const {categories, categorie, status, error} = categoriesSlice.actions
+
 export default categoriesSlice.reducer;
 
 /*3. GET /categories коли мені потрібно вивести 

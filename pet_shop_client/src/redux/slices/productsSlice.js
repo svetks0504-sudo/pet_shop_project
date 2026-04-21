@@ -31,7 +31,6 @@ export const fetchProduct = createAsyncThunk(
     }
 )
  
-
 const setLoading = (state) => {
     state.status = "loading";
     state.error = null;
@@ -71,7 +70,6 @@ const productsSlice = createSlice({
   },
 });
 
-const {products, product, error, status} = productsSlice.actions
 export default productsSlice.reducer;
 
 /*

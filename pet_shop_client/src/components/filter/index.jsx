@@ -29,9 +29,10 @@ const handleChange = value => {
   console.log(`selected ${value}`);
 };
 
-function Filter (){
+function Filter ({isCheckbox}){
     return(
-<div className={styles.filterContainer}>
+<div className={styles.filterContainer}
+style={{width: isCheckbox ? "63vw" : "44vw"}}>
 
     <label className={styles.labelFiltr}>
         Price 
@@ -46,7 +47,8 @@ function Filter (){
 </Row>
     </label>
 
-<ConfigProvider
+{isCheckbox && (
+  <ConfigProvider
   theme={{
     components: {
       Checkbox: {
@@ -62,7 +64,7 @@ function Filter (){
  onChange={onChange}>
 Discounted items
 </Checkbox>
-</ConfigProvider>
+</ConfigProvider>)}
 
 <label className={styles.labelFiltr}>Sorted
  <Select suffixIcon={<DownOutlined className={styles.arrow} />}
