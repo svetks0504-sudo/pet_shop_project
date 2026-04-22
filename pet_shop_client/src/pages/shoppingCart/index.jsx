@@ -52,7 +52,7 @@ function ShoppingCart() {
 
   return (
     <div className={styles.shoppingContainer}>
-      <DividerHome title={"Shopping cart"} all={"Back to the store"} />
+      <DividerHome link={"/"} title={"Shopping cart"} all={"Back to the store"} />
       <Flex style={{ gap: "2vw", justifyContent: "space-between" }}>
         <div className={styles.containercard}>
           {cart.length === 0 ? (

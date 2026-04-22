@@ -47,3 +47,42 @@ URL:
 8. Проблема який товар показати как дізнатись id.
 Рішення: import { useParams } from "react-router-dom";
 const { id } = useParams();
+
+9. export const cartLocalStorageMiddleware = 
+(store) => (next) => (action) => {
+const result = next(action);
+localStorage.setItem(
+  "cart",
+   JSON.stringify(store.getState().cart.cart)
+)
+return result;
+}
+
+МЕТОДИ store:
+це все є
+console.log(store);
+const store = {
+  dispatch: function(action) {},
+  getState: function() {},
+  subscribe: function() {},
+};
+store = керує всім Redux станом
+getState = читання
+dispatch = зміна
+subscribe = слідкування
+аналогія
+store = банк
+getState = подивитись баланс
+dispatch = зробити операцію
+subscribe = отримати SMS про зміну
+
+(store.getState().cart.cart
+ це як 
+Redux store = велика коробка
+getState() = відкрити коробку
+cart.cart = дістати конкретний пакет
+або 
+весь store → cart slice → масив товарів)
+
+10. не знала як підтягнути з локал сторедж на сторінку 
+cart: JSON.parse(localStorage.getItem("cart")) || [],

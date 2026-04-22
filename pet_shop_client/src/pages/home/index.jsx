@@ -58,7 +58,7 @@ function Home() {
 
       {/* ----- 2 part categories ------ */}
       <div className={styles.categoriesContainer}>
-        <DividerHome title={"Categories"} all={"All categories "} />
+        <DividerHome link={"/categories"} title={"Categories"} all={"All categories "} />
         <Carousel
           array={categories}
           component={CardCategories}
@@ -103,7 +103,7 @@ function Home() {
       </div>
       {/* ----- 4 part SALE products ------ */}
       <div className={styles.saleContainerHome} id="part-1">
-        <DividerHome title={"Sale"} all={"All sales"} />
+        <DividerHome link={"/allProducts?type=discount"} title={"Sale"} all={"All sales"} />
         <Carousel
           array={discontArray}
           component={CardProduct}

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "../../redux/slices/productsSlice";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/cardProduct";
@@ -36,6 +36,12 @@ function AllProducts() {
   const [params] = useSearchParams();
   const type = params.get("type");
   const category = params.get("category");
+  const [dataFilter, setdataFilter] = useState({
+    isCheckActiv: false,
+    from: 0,
+    to: 0,
+    sorted: "by default",
+  });
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -80,7 +86,11 @@ function AllProducts() {
     <div className={styles.productsContainer}>
       <BreadCrumb array={breadArray} />
       <h2 className={styles.titleProducts}>{title}</h2>
-      <Filter isCheckbox={isCheckbox} />
+      <Filter
+        isCheckbox={isCheckbox}
+        dataFilter={dataFilter}
+        setdataFilter={setdataFilter}
+      />
       <div className={styles.cartsContainer}>
         {dataToShow?.map((prod) => {
           return <CardProduct key={prod.id} elem={prod} path="/product/" />;

@@ -2,12 +2,8 @@ import styles from './styles.module.css'
 import { Select, Checkbox, InputNumber, Row, Col} from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
-
-
-const onChange = e => {
-  console.log(`checked = ${e.target.checked}`);
-};
-
+import { useCallback } from 'react';
+ 
 
 const options = [
   { label: 'by default', value: 'by default' },
@@ -25,11 +21,33 @@ const labelRender = props => {
   return <span>No option match</span>;
 };
 
-const handleChange = value => {
-  console.log(`selected ${value}`);
-};
+function Filter ({isCheckbox, dataFilter, setdataFilter}){
 
-function Filter ({isCheckbox}){
+  
+const onChangeFromTo = useCallback((field, event) => {
+  setdataFilter(prev=> ({
+    ...prev,
+    [field]: event
+  }));
+}, [setdataFilter])
+
+const handleChange = useCallback((value) => {
+  setdataFilter(prev => ({
+    ...prev,
+    sorted: value
+  })) ;
+}, [setdataFilter])
+
+const onChange = useCallback((event) => {
+  setdataFilter(prev => ({
+    ...prev,
+     isCheckActiv: event.target.checked
+  }))
+}, [setdataFilter])
+console.log(dataFilter)
+
+
+
     return(
 <div className={styles.filterContainer}
 style={{width: isCheckbox ? "63vw" : "44vw"}}>
@@ -38,11 +56,19 @@ style={{width: isCheckbox ? "63vw" : "44vw"}}>
         Price 
         <Row gutter={16} align="middle">
   <Col>
-    <InputNumber placeholder="from" min={0} />
+    <InputNumber style={{fontSize: "4rem", fontWeight: "600"}} 
+    placeholder="from" 
+    value={dataFilter.from}
+    onChange={(value) => onChangeFromTo("from", value)}
+    min={0} />
   </Col>
   
   <Col>
-    <InputNumber placeholder="to" min={0} />
+    <InputNumber style={{fontSize: "4rem", fontWeight: "600"}}
+    placeholder="to" 
+    value={dataFilter.to}
+    onChange={(value) => onChangeFromTo("to", value)}
+    min={0} />
   </Col>
 </Row>
     </label>
