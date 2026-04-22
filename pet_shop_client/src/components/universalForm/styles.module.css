@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 36vw;
+  gap: 1vw;
+  border-radius: 12px;
+}
+.input {
+  border: 1px solid white;
+  height: 58px;
+}
+.input::placeholder {
+  font-size: 5rem;
+}
+.input:global(.ant-input:hover){
+ background-color: blue;
+}
+.input:global(.ant-input:focus) {
+  background: #2002a7;
+  font-size: 5rem;
+}
+.error{
+  font-size: 5rem;
+  color: rgb(124, 5, 5);
+}
+.input::placeholder {
+  color: var(--placeholder-color);
+}

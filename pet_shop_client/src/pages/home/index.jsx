@@ -1,46 +1,39 @@
-import { Input, Anchor } from "antd";
+import { Anchor } from "antd";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../redux/slices/categoriesSlice";
 import { fetchProducts } from "../../redux/slices/productsSlice";
 import CardCategories from "../../components/cardCategories";
 import CardProduct from "../../components/cardProduct";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DividerHome from "../../components/dividerHome";
-import { useForm } from "react-hook-form";
 import BtnCard from "../../components/btnCard";
 import BtnBanner from "../../components/btnBanner";
 import Carousel from "../../components/carousel";
-
+import { sendSale } from "../../redux/slices/postSlice";
+import { resetState } from "../../redux/slices/postSlice";
+import UniversalForm from "../../components/universalForm";
 
 function Home() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const { products } = useSelector((state) => state.products);
-
-  const [isPost, setIsPost] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { success, error, message, loading } = useSelector(
+    (state) => state.post,
+  );
 
   useEffect(() => {
     dispatch(fetchCategories());
-    dispatch(fetchProducts());  }, [dispatch]);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-  const onSubmit = async (data) => {
-    await dispatch(data);
-    setIsPost(true);
-    reset();
-    setTimeout(() => {
-      setIsPost(false);
-    }, 1000);
-  };
+  useEffect(() => {
+    return () => {
+      dispatch(resetState());
+    };
+  }, [dispatch]);
 
-const discontArray = products.filter((item)=> item.discont_price !== null)
+  const discontArray = products.filter((item) => item.discont_price !== null);
 
   return (
     <div>
@@ -50,23 +43,27 @@ const discontArray = products.filter((item)=> item.discont_price !== null)
           Amazing Discounts on Pets Products!
         </h1>
         <div className={styles.leftBtn}>
-          <Anchor affix={false}
-           items={[
-    {
-      key: 'part-1',
-      href: '#part-1',
-      title: <BtnCard titleBtn="Check out" />,
-    },
-  ]}/>
+          <Anchor
+            affix={false}
+            items={[
+              {
+                key: "part-1",
+                href: "#part-1",
+                title: <BtnCard titleBtn="Check out" widthBtn= {"71rem"} />,
+              },
+            ]}
+          />
         </div>
       </div>
 
       {/* ----- 2 part categories ------ */}
       <div className={styles.categoriesContainer}>
         <DividerHome title={"Categories"} all={"All categories "} />
-        <Carousel array={categories} 
-        component={CardCategories} 
-        path="/allProducts?category="/>
+        <Carousel
+          array={categories}
+          component={CardCategories}
+          path="/allProducts?category="
+        />
       </div>
 
       {/* ----- 3 part 5% form ------ */}
@@ -78,39 +75,40 @@ const discontArray = products.filter((item)=> item.discont_price !== null)
             src="src/assets/images/dogs.png"
             alt="icons"
           />
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              className={styles.input}
-              placeholder="Name"
-              {...register("name", { required: true })}
-            />
-            {errors.name && <span>Name field is required</span>}
 
-            <Input
-              className={styles.input}
-              placeholder="Phone number"
-              {...register("phone", { required: true })}
-            />
-            {errors.phone && <span>Phone number field is required</span>}
-
-            <Input
-              className={styles.input}
-              placeholder="Email"
-              {...register("email", { required: true })}
-            />
-            {errors.email && <span>Email field is required</span>}
+          <UniversalForm
+            onSubmit={(data) => dispatch(sendSale(data))}
+            background={"rgba(13, 80, 255, 1)"}
+            backgroundIn={"rgba(13, 80, 255, 1)"}
+            color={"rgba(255, 255, 255, 1)"}
+            colorPl={"rgba(255, 255, 255, 1)"}
+            success={success}
+            loading={loading}
+            padding={"2vw"}
+            resetSuccess={() => dispatch(resetState())}
+          >
             <BtnBanner
-              title={isPost ? "Request Submitted" : "Get a discount"}
+              disabled={loading}
+              htmlType={"submit"}
+              title={
+                loading
+                  ? "Sending..."
+                  : success
+                    ? "Request Submitted"
+                    : "Get a discount"
+              }
             />
-          </form>
+          </UniversalForm>
         </div>
       </div>
       {/* ----- 4 part SALE products ------ */}
       <div className={styles.saleContainerHome} id="part-1">
         <DividerHome title={"Sale"} all={"All sales"} />
-        <Carousel array={discontArray}
-         component={CardProduct}
-         path="/product/" />
+        <Carousel
+          array={discontArray}
+          component={CardProduct}
+          path="/product/"
+        />
       </div>
     </div>
   );

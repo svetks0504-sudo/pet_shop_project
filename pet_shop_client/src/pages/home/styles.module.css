@@ -38,28 +38,7 @@
   display: flex;
   justify-content: space-between;
 }
-.form {
-  padding: 2vw;
-  display: flex;
-  flex-direction: column;
-  width: 36vw;
-  gap: 1vw;
-  background-color: rgba(13, 80, 255, 1);
-  border-radius: 12px;
-}
-.input {
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(13, 80, 255, 1);
-  border: 1px solid white;
-  height: 58px;
-}
-.input::placeholder {
-  color: rgba(255, 255, 255, 1);
-  font-size: 5rem;
-}
-.input:hover{
- color: black !important; 
-}
+
 .formImg {
   width: 100%;
   max-width: 54vw;

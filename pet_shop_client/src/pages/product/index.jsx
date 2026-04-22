@@ -82,7 +82,10 @@ function Product() {
               isBlock={isAdded}
               setCount={setCount}
             />
-            <BtnCard titleBtn={btnText} onClick={onClick} isBlock={isAdded} />
+            <BtnCard titleBtn={btnText}
+             onClick={onClick} 
+             isBlock={isAdded}
+             widthBtn= {"71rem"} />
           </div>
 
           <div className={styles.text}>
