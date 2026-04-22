@@ -57,3 +57,17 @@
   background-color: white;
   text-decoration: underline;
 }
+
+@media (max-width: 900px){
+  .product{
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .productImg{
+    width: 100%;
+  }
+  .productText {
+    width: 100%;
+  }
+}

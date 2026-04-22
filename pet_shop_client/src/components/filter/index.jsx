@@ -24,27 +24,12 @@ const labelRender = props => {
 function Filter ({isCheckbox, dataFilter, setdataFilter}){
 
   
-const onChangeFromTo = useCallback((field, event) => {
-  setdataFilter(prev=> ({
+const handleFilterChange = useCallback((field, value) => {
+  setdataFilter(prev => ({
     ...prev,
-    [field]: event
+    [field]: value
   }));
-}, [setdataFilter])
-
-const handleChange = useCallback((value) => {
-  setdataFilter(prev => ({
-    ...prev,
-    sorted: value
-  })) ;
-}, [setdataFilter])
-
-const onChange = useCallback((event) => {
-  setdataFilter(prev => ({
-    ...prev,
-     isCheckActiv: event.target.checked
-  }))
-}, [setdataFilter])
-console.log(dataFilter)
+}, [setdataFilter]);
 
 
 
@@ -59,7 +44,7 @@ style={{width: isCheckbox ? "63vw" : "44vw"}}>
     <InputNumber style={{fontSize: "4rem", fontWeight: "600"}} 
     placeholder="from" 
     value={dataFilter.from}
-    onChange={(value) => onChangeFromTo("from", value)}
+    onChange={(value) => handleFilterChange("from", value)}
     min={0} />
   </Col>
   
@@ -67,7 +52,7 @@ style={{width: isCheckbox ? "63vw" : "44vw"}}>
     <InputNumber style={{fontSize: "4rem", fontWeight: "600"}}
     placeholder="to" 
     value={dataFilter.to}
-    onChange={(value) => onChangeFromTo("to", value)}
+    onChange={(value) => handleFilterChange("to", value)}
     min={0} />
   </Col>
 </Row>
@@ -78,7 +63,7 @@ style={{width: isCheckbox ? "63vw" : "44vw"}}>
   theme={{
     components: {
       Checkbox: {
-        controlInteractiveSize: 36,
+        controlInteractiveSize: "9rem",
       },
     },
   }}
@@ -87,7 +72,7 @@ style={{width: isCheckbox ? "63vw" : "44vw"}}>
     fontWeight:"600",
     fontFamily: "Montserrat, sans-serif"
 }}
- onChange={onChange}>
+ onChange={(event)=>{ handleFilterChange("isCheckActiv", event.target.checked)}}>
 Discounted items
 </Checkbox>
 </ConfigProvider>)}
@@ -100,7 +85,7 @@ Discounted items
     fontSize: "4rem",
 
   }} 
- onChange={handleChange}
+ onChange={(value)=>handleFilterChange("sorted", value)}
  options={options} 
 />
 </label>

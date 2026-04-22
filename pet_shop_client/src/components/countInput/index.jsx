@@ -1,9 +1,10 @@
 import { Flex, InputNumber } from "antd";
+import styles from './styles.module.css'
 
-function CountInput({ count, max, isBlock, setCount }) {
-  
+function CountInput({ count, max, isBlock, setCount }) {  
   return (
     <InputNumber
+    className={styles.countI}
       mode="spinner"
       placeholder="Outlined"
       disabled={isBlock}
@@ -11,8 +12,6 @@ function CountInput({ count, max, isBlock, setCount }) {
       max={max}
       value={count}
       onChange={(value) => setCount(value)}
-     
-      style={{ width: "50rem", height: "15rem" }}
     />
   );
 }

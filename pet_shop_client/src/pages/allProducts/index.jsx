@@ -47,24 +47,12 @@ function AllProducts() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const discountProducts = products.filter(
-    (item) => item.discont_price !== null,
-  );
-  const categoryProducts = category
-    ? products.filter((item) => item.categoryId === Number(category))
-    : [];
-
   let title = "All products";
   let isCheckbox = true;
-  let dataToShow = products;
+  let dataToShow = [...products];
   let breadArray = crumbArrayProducts;
 
-  if (type === "discount") {
-    title = "Discounted items";
-    isCheckbox = false;
-    dataToShow = discountProducts;
-    breadArray = crumbArrayDiscont;
-  }
+  // category
   if (category) {
     const categoryName = categories.find(
       (cat) => cat.id === Number(category),
@@ -78,8 +66,46 @@ function AllProducts() {
 
     title = categoryName;
     isCheckbox = true;
-    dataToShow = categoryProducts;
+    dataToShow = dataToShow.filter(
+      (item) => item.categoryId === Number(category),
+    );
     breadArray = crumbArrayCategory;
+  }
+
+  // discount
+  if (type === "discount") {
+    title = "Discounted items";
+    isCheckbox = false;
+    dataToShow = dataToShow.filter((item) => item.discont_price !== null);
+    breadArray = crumbArrayDiscont;
+  }
+  
+
+  if (dataFilter.isCheckActiv) {
+    dataToShow = dataToShow.filter((item) => item.discont_price !== null);
+  }
+
+  // price filter
+ if (dataFilter.from || dataFilter.to) {
+  dataToShow = dataToShow.filter((elem) => {
+    const price = elem.discont_price || elem.price;
+
+    if (dataFilter.from && price < dataFilter.from) return false;
+    if (dataFilter.to && price > dataFilter.to) return false;
+
+    return true;
+  });
+}
+
+  if (dataFilter.sorted === "price: low-high") {
+    dataToShow.sort(
+      (a, b) => (a.discont_price || a.price) - (b.discont_price || b.price),
+    );
+  }
+  if (dataFilter.sorted === "price: high-low") {
+    dataToShow.sort(
+      (a, b) => (b.discont_price || b.price) - (a.discont_price || a.price),
+    );
   }
 
   return (

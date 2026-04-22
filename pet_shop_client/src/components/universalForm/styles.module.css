@@ -3,11 +3,11 @@
   flex-direction: column;
   width: 36vw;
   gap: 1vw;
-  border-radius: 12px;
+  border-radius: 3rem;
 }
 .input {
   border: 1px solid white;
-  height: 58px;
+  height: 13rem;
 }
 .input::placeholder {
   font-size: 5rem;
@@ -25,4 +25,9 @@
 }
 .input::placeholder {
   color: var(--placeholder-color);
+}
+@media (max-width: 900px){
+  .form{
+    width: 100%;
+  }
 }

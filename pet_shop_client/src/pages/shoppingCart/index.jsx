@@ -14,6 +14,7 @@ import BtnCard from "../../components/btnCard";
 import CountInput from "../../components/countInput";
 import { CloseOutlined } from "@ant-design/icons";
 import EmpatyData from "../../components/empatyData";
+import { Link } from "react-router-dom";
 
 const BASE_URL = "http://localhost:3333";
 
@@ -47,41 +48,44 @@ function ShoppingCart() {
 
     return price * item.quantity;
   };
+  const path="/product/"
 
   console.log(cart);
 
   return (
     <div className={styles.shoppingContainer}>
-      <DividerHome link={"/"} title={"Shopping cart"} all={"Back to the store"} />
-      <Flex style={{ gap: "2vw", justifyContent: "space-between" }}>
+      <DividerHome
+        link={"/"}
+        title={"Shopping cart"}
+        all={"Back to the store"}
+      />
+      <Flex className={styles.flex}>
         <div className={styles.containercard}>
           {cart.length === 0 ? (
             <EmpatyData />
           ) : (
             cart.map((item) => {
               return (
-                <Card
+                <Card className={styles.cardFlix}
                   key={item.id}
-                  style={{
-                    width: "51vw",
-                    position: "relative",
-                  }}
                   styles={{
                     body: { padding: 0 },
                   }}
                 >
                   <Flex>
+                    <Link to={`${path}/${item?.id}`}>
                     <img
                       src={`${BASE_URL}/${item?.image}`}
                       alt={item?.title}
                       className={styles.imgCard}
                     />
+                    </Link>
                     <div className={styles.containerClose}>
                       <CloseOutlined
                         style={{
                           position: "absolute",
-                          right: "32px",
-                          top: "32px",
+                          right: "8rem",
+                          top: "8rem",
                           width: "24px",
                         }}
                         onClick={() => dispatch(removeFromCart(item.id))}
@@ -105,18 +109,14 @@ function ShoppingCart() {
           )}
         </div>
 
-        <Card
-          style={{
-            backgroundColor: "rgba(241, 243, 244, 1)",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <Card className={styles.containerWithForm}>
           <h3>Order details</h3>
           <h3 className={styles.greyText}>{totalItems} items</h3>
-          <Flex>
-            <h3 className={styles.greyText}>{}</h3>
-            <h2>${totalPrice}</h2>
+          <Flex style={{justifyContent: "space-between",
+          paddingBottom: "2vw"}}>
+            <h3 className={styles.greyText}>Total</h3>
+            <h2 style={{alignSelf: "flex-end"}}
+            >${totalPrice},00</h2>
           </Flex>
           <UniversalForm
             onSubmit={(data) => {
@@ -132,6 +132,7 @@ function ShoppingCart() {
             color={"rgba(139, 139, 139, 1)"}
             colorPl={"rgba(139, 139, 139, 1)"}
           >
+
             <BtnCard
               titleBtn={
                 loading ? "Sending..." : success ? "Request Submitted" : "Order"

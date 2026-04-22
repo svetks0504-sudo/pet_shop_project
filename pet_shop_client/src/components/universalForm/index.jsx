@@ -138,7 +138,8 @@ function UniversalForm({
         onCancel={handleCloseModal}
         okText="OK"
       >
-        <p>Request sent successfully 🎉</p>
+        <h3>Request sent successfully 🎉</h3>
+        <img src="src/assets/images/catGif.gif" />
       </Modal>
     </div>
   );

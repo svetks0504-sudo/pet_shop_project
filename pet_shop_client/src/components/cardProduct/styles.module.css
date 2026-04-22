@@ -33,3 +33,9 @@
   text-decoration: line-through;
   font-weight: 500;
 }
+.btnCard{
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+}

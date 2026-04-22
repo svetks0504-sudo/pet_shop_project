@@ -10,19 +10,51 @@ html {
     font-family: "Montserrat", sans-serif;
   }
   h2 {
-    font-size: 16rem;/*64px*/
+    font-size: 16rem; /*64px*/
     font-family: "Montserrat", sans-serif;
   }
   h3 {
-    font-size: 10rem;/*40px*/
+    font-size: 10rem; /*40px*/
     font-family: "Montserrat", sans-serif;
   }
   h4 {
-    font-size: 5rem;/*20px*/
+    font-size: 5rem; /*20px*/
     font-family: "Montserrat", sans-serif;
   }
   p {
-    font-size: 4rem;/*16px*/
+    font-size: 4rem; /*16px*/
     font-family: "Montserrat", sans-serif;
+  }
+}
+@media (max-width: 1350px) {
+  html {
+    font-size: 3.5px;
+  }
+}
+@media (max-width: 1150px) {
+  html {
+    font-size: 3.1px;
+  }
+}
+@media (max-width: 850px) {
+  html {
+    font-size: 2.5px;
+  }
+}
+@media (max-width: 650px) {
+  html {
+    font-size: 2px;
+  }
+  h1 {
+    font-size: 18rem;
+  }
+  h2 {
+    font-size: 13rem;
+  }
+  h4 {
+    font-size: 9rem;
+  }
+  p {
+    font-size: 6rem;
   }
 }

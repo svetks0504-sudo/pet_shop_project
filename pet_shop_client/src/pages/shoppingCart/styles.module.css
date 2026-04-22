@@ -1,21 +1,51 @@
-.shoppingContainer{
-    padding: 0 3vw;
+.shoppingContainer {
+  padding: 0 10rem;
 }
 
-.imgCard{
-    width: 50rem;
-    height: 45rem;
+.imgCard {
+  width: 50rem;
+  height: 45rem;
 }
-.containercard{
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
+.containercard {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 }
-.containerClose{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2vw;
-    padding: 32px;
+.containerClose {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  padding: 8rem;
+  width: 100%;
+}
+.flex {
+  gap: 2vw;
+  justify-content: space-between;
+}
+.cardFlix {
+  width: 51vw;
+  position: relative;
+}
+.greyText {
+  color: rgb(139, 139, 139, 1);
+  font-weight: 500;
+  align-self: flex-end;
+}
+.containerWithForm {
+  background-color: rgba(241, 243, 244, 1);
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 1200px) {
+  .flex {
+    flex-wrap: wrap;
+  }
+  .cardFlix {
+    width: 93vw;
+    margin: 0 auto;
+  }
+  .containerWithForm {
     width: 100%;
+  }
 }
