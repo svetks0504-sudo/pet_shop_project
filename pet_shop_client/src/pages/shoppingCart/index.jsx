@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  addToCart,
   removeFromCart,
   clearCart,
   updateQuantity,
@@ -12,7 +11,9 @@ import { Card, Flex } from "antd";
 import { sendOrder, resetState } from "../../redux/slices/postSlice";
 import UniversalForm from "../../components/universalForm";
 import BtnCard from "../../components/btnCard";
-import CountInput from '../../components/countInput'
+import CountInput from "../../components/countInput";
+import { CloseOutlined } from "@ant-design/icons";
+import EmpatyData from "../../components/empatyData";
 
 const BASE_URL = "http://localhost:3333";
 
@@ -22,42 +23,88 @@ function ShoppingCart() {
   const { success, error, message, loading } = useSelector(
     (state) => state.post,
   );
-  const [count, setCount] = useState(1);
-   console.log(count)
+
+  const handleQuantityChange = (id) => (value) => {
+    dispatch(
+      updateQuantity({
+        id,
+        quantity: value,
+      }),
+    );
+  };
+
+  const totalPrice = cart.reduce((acc, item) => {
+    const price = item.discont_price ?? item.price;
+    return acc + price * item.quantity;
+  }, 0);
+
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  const totalProductPrice = (id) => {
+    const item = cart.find((i) => i.id === id);
+    if (!item) return 0;
+    const price = item.discont_price ?? item.price;
+
+    return price * item.quantity;
+  };
+
+  console.log(cart);
+
   return (
     <div className={styles.shoppingContainer}>
       <DividerHome title={"Shopping cart"} all={"Back to the store"} />
       <Flex style={{ gap: "2vw", justifyContent: "space-between" }}>
         <div className={styles.containercard}>
-          {cart.map((item) => {
-            return (
-              <Card
-                key={item.id}
-                style={{ width: "100%", position: "relative" }}
-              >
-                <Flex>
-                  <img src={`${BASE_URL}/${item?.image}`}
-                    alt={item?.title}
-                    className={styles.imgCard}
-                  />
-                  <div>
-                  <p >{item?.title}</p>
-                  <Flex style={{gap: "8rem"}}>
-                      <CountInput
-              max={15}
-              count={count}
-              /*isBlock={isAdded}*/
-              setCount={setCount}
-            />
-          
-            <h3>${item?.discont_price}</h3>
+          {cart.length === 0 ? (
+            <EmpatyData />
+          ) : (
+            cart.map((item) => {
+              return (
+                <Card
+                  key={item.id}
+                  style={{
+                    width: "51vw",
+                    position: "relative",
+                  }}
+                  styles={{
+                    body: { padding: 0 },
+                  }}
+                >
+                  <Flex>
+                    <img
+                      src={`${BASE_URL}/${item?.image}`}
+                      alt={item?.title}
+                      className={styles.imgCard}
+                    />
+                    <div className={styles.containerClose}>
+                      <CloseOutlined
+                        style={{
+                          position: "absolute",
+                          right: "32px",
+                          top: "32px",
+                          width: "24px",
+                        }}
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                      />
+                      <p>{item?.title}</p>
+                      <Flex style={{ gap: "8rem" }}>
+                        <CountInput
+                          max={15}
+                          count={item.quantity}
+                          /*isBlock={isAdded}*/
+                          setCount={handleQuantityChange(item.id)}
+                        />
+
+                        <h3>${totalProductPrice(item.id)}</h3>
+                      </Flex>
+                    </div>
                   </Flex>
-                  </div>
-                </Flex>
-              </Card>
-            );
-          })}
+                </Card>
+              );
+            })
+          )}
         </div>
+
         <Card
           style={{
             backgroundColor: "rgba(241, 243, 244, 1)",
@@ -66,14 +113,15 @@ function ShoppingCart() {
           }}
         >
           <h3>Order details</h3>
-          <h3 className={styles.greyText}></h3>
+          <h3 className={styles.greyText}>{totalItems} items</h3>
           <Flex>
             <h3 className={styles.greyText}>{}</h3>
-            <h2>${}</h2>
+            <h2>${totalPrice}</h2>
           </Flex>
           <UniversalForm
             onSubmit={(data) => {
               dispatch(sendOrder(data));
+              dispatch(clearCart());
             }}
             background={"rgba(241, 243, 244, 1)"}
             success={success}

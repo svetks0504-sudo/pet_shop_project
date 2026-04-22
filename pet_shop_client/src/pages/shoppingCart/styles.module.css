@@ -6,3 +6,16 @@
     width: 50rem;
     height: 45rem;
 }
+.containercard{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+.containerClose{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    padding: 32px;
+    width: 100%;
+}
