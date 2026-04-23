@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   removeFromCart,
   clearCart,
@@ -7,7 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import DividerHome from "../../components/dividerHome";
 import styles from "./styles.module.css";
-import { Card, Flex } from "antd";
+import { Card, Flex, Modal } from "antd";
 import { sendOrder, resetState } from "../../redux/slices/postSlice";
 import UniversalForm from "../../components/universalForm";
 import BtnCard from "../../components/btnCard";
@@ -15,6 +14,7 @@ import CountInput from "../../components/countInput";
 import { CloseOutlined } from "@ant-design/icons";
 import EmpatyData from "../../components/empatyData";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const BASE_URL = "http://localhost:3333";
 
@@ -22,8 +22,8 @@ function ShoppingCart() {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { success, error, message, loading } = useSelector(
-    (state) => state.post,
-  );
+    (state) => state.post);
+    const [isAddProductBtn, setIsAddProductBtn] = useState(false)
 
   const handleQuantityChange = (id) => (value) => {
     dispatch(
@@ -33,6 +33,7 @@ function ShoppingCart() {
       }),
     );
   };
+
 
   const totalPrice = cart.reduce((acc, item) => {
     const price = item.discont_price ?? item.price;
@@ -49,6 +50,16 @@ function ShoppingCart() {
     return price * item.quantity;
   };
   const path="/product/"
+
+ const onSubmit = async(data) => {
+  if (cart.length === 0) {
+    setIsAddProductBtn(true);
+  }
+const result = await dispatch(sendOrder(data));
+   if (result.meta.requestStatus === "fulfilled") {
+    dispatch(clearCart());
+  }
+};
 
   console.log(cart);
 
@@ -119,19 +130,17 @@ function ShoppingCart() {
             >${totalPrice},00</h2>
           </Flex>
           <UniversalForm
-            onSubmit={(data) => {
-              dispatch(sendOrder(data));
-              dispatch(clearCart());
-            }}
+            onSubmit={onSubmit}
             background={"rgba(241, 243, 244, 1)"}
             success={success}
             padding={"0"}
-            loading={loading}
             resetSuccess={resetState}
             backgroundIn={"rgba(255, 255, 255, 1)"}
             color={"rgba(139, 139, 139, 1)"}
             colorPl={"rgba(139, 139, 139, 1)"}
-          >
+            isAddProductBtn={isAddProductBtn}
+            titleModal={"Your order has been successfully placed on the website. A manager will contact you shortly to confirm your order."}
+  >
 
             <BtnCard
               titleBtn={

@@ -5,3 +5,19 @@
 .last {
   color: #000 !important;
 }
+.containerRight {
+  padding: 2rem 4rem;
+  border: 1px solid rgba(221, 221, 221, 1);
+  border-radius: 6px;
+  font-size: 4rem;
+  color: rgba(139, 139, 139, 1);
+  white-space: nowrap;
+}
+:global(.ant-breadcrumb-separator) {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  vertical-align: middle;
+}

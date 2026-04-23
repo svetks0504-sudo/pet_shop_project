@@ -1,9 +1,10 @@
-import { Input, Modal } from "antd";
+import { Input, Modal, ConfigProvider } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import styles from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { resetState } from "../../redux/slices/postSlice";
+import { Link } from "react-router-dom";
 
 function UniversalForm({
   onSubmit,
@@ -14,8 +15,9 @@ function UniversalForm({
   color,
   success,
   colorPl,
-  loading,
   resetSuccess,
+  isAddProductBtn,
+  titleModal,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
@@ -131,16 +133,47 @@ function UniversalForm({
 
         {children}
       </form>
-      <Modal
-        title="Success"
-        open={isModalOpen}
-        onOk={handleCloseModal}
-        onCancel={handleCloseModal}
-        okText="OK"
+
+      <ConfigProvider
+        theme={{
+          components: {
+            Modal: {
+              contentBg: "rgba(13, 80, 255, 1)",
+              colorText: "#fff",
+            },
+          },
+        }}
       >
-        <h3>Request sent successfully 🎉</h3>
-        <img src="src/assets/images/catGif.gif" />
-      </Modal>
+        <Modal
+          centered
+          closeIcon={<span style={{ color: "#fff" }}>✕</span>}
+          open={isModalOpen}
+          footer={null}
+          onCancel={handleCloseModal}
+        >
+          {!isAddProductBtn ? (
+            <>
+              <h3>Congratulations!</h3>
+              <h4>{titleModal}</h4>
+              <img
+                className={styles.imgModal}
+                src="src/assets/images/catGif.gif"
+              />
+            </>
+          ) : (
+            <Link to="/allProducts">
+              <div className={styles.absolut}>
+                <h4 className={styles.textModal}>First add a product!</h4>
+                <h4 className={styles.textLink}>Go to products.</h4>
+                <img
+                  className={styles.imgLink}
+                  src="src/assets/images/spin.gif"
+                />
+              </div>
+            </Link>
+          )}
+        </Modal>
+      </ConfigProvider>
     </div>
   );
 }

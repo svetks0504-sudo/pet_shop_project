@@ -9,7 +9,7 @@ function EmpatyData() {
       styles={{ image: { height: 200 }}}
       description={
         <Typography.Text>
-          To products <Link to="/allProducts">Products</Link>
+          To <Link to="/allProducts">Products</Link>
         </Typography.Text>
       }
     >

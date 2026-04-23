@@ -12,22 +12,54 @@
 .input::placeholder {
   font-size: 5rem;
 }
-.input:global(.ant-input:hover){
- background-color: blue;
+.input:global(.ant-input:hover) {
+  background-color: blue;
 }
 .input:global(.ant-input:focus) {
   background: #2002a7;
   font-size: 5rem;
 }
-.error{
+.error {
   font-size: 5rem;
   color: rgb(124, 5, 5);
 }
 .input::placeholder {
   color: var(--placeholder-color);
 }
-@media (max-width: 900px){
-  .form{
+.imgModal{
+  width: 40rem;
+}
+
+.absolut{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  border-radius: 50%;
+  padding: 1vw;
+}
+.textModal{
+  color: rgb(230, 228, 228);
+  font-weight: 400;
+}
+.textLink {
+  text-decoration: underline;
+  color: rgba(4, 27, 102, 0.8);
+  transition: 0.2s;
+}
+.textLink:hover {
+  font-size: 6rem;
+  color: rgba(214, 228, 22, 0.8);
+}
+.imgLink {
+  width: 20rem;
+  opacity: 0.8;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+@media (max-width: 900px) {
+  .form {
     width: 100%;
   }
 }

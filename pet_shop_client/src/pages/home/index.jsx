@@ -18,7 +18,7 @@ function Home() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const { products } = useSelector((state) => state.products);
-  const { success, error, message, loading } = useSelector(
+  const { success, loading } = useSelector(
     (state) => state.post,
   );
 
