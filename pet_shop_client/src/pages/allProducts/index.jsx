@@ -108,6 +108,15 @@ function AllProducts() {
     );
   }
 
+  useEffect(() => {
+  setdataFilter({
+    isCheckActiv: false,
+    from: 0,
+    to: 0,
+    sorted: "by default",
+  });
+}, [type, category]);
+
   return (
     <div className={styles.productsContainer}>
       <BreadCrumb array={breadArray} />
